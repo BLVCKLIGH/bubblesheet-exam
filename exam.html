@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Exam | Bubblesheet</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/common.js" defer></script>
+  <script src="js/exam.js" defer></script>
+</head>
+<body data-page="exams">
+  <div id="site-header"></div>
+  <main id="main"></main>
+
+  <div class="modal" id="submit-modal" role="dialog" aria-modal="true" aria-labelledby="submit-title">
+    <div class="modal-box">
+      <h2 id="submit-title" style="font-size:1.5rem">Submit your exam?</h2>
+      <p id="submit-text"></p>
+      <div class="modal-actions">
+        <button class="btn btn-line" type="button" id="submit-cancel">Keep working</button>
+        <button class="btn btn-guide" type="button" id="submit-confirm">Submit exam</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

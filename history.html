@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>My results and leaderboard | Bubblesheet</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/common.js" defer></script>
+  <script src="js/history.js" defer></script>
+</head>
+<body data-page="history">
+  <div id="site-header"></div>
+  <main id="main" class="wrap">
+    <div class="page-head"><h1>My results</h1><p id="summary">Every attempt you've made in this browser.</p></div>
+    <div id="history"></div>
+
+    <h2 id="leaderboard">Leaderboard</h2>
+    <p class="muted">Best score per person for each exam. Ties are broken by the faster time.</p>
+    <div class="filters"><div style="max-width:340px"><label for="board-exam">Exam</label><select id="board-exam"></select></div></div>
+    <div class="table-wrap"><table class="data"><thead><tr><th scope="col">Rank</th><th scope="col">Name</th><th scope="col" class="num">Score</th><th scope="col" class="num">Time</th></tr></thead><tbody id="board"></tbody></table></div>
+  </main>
+  <div id="site-footer"></div>
+</body>
+</html>

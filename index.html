@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bubblesheet | Timed online practice exams</title>
+  <meta name="description" content="Take timed multiple-choice practice exams in web development, programming, maths, networking and general knowledge. Get your score and a full answer review straight away.">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/common.js" defer></script>
+  <script src="js/home.js" defer></script>
+</head>
+<body data-page="home">
+  <div id="site-header"></div>
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap hero-grid">
+        <div>
+          <h1 id="hero-title">Practice exams that mark themselves</h1>
+          <p class="lead">Timed multiple-choice tests in web development, programming, maths, networking and general knowledge. Finish, and you'll see your score and every answer explained.</p>
+          <div class="hero-ctas">
+            <a class="btn btn-dark" href="exams.html">Choose an exam</a>
+            <a class="btn btn-line" href="exam.html?id=html-css">Try a 10-minute exam</a>
+          </div>
+        </div>
+        <div class="sheet" id="sheet" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section class="ruled" id="how" aria-labelledby="how-title">
+      <div class="wrap">
+        <h2 id="how-title">How it works</h2>
+        <ol class="steps">
+          <li><span class="bubble filled">1</span><div><h3>Pick an exam</h3><p>Each exam draws its questions at random, so no two attempts are the same.</p></div></li>
+          <li><span class="bubble filled">2</span><div><h3>Answer against the clock</h3><p>Jump between questions, flag the ones you want to come back to, and submit when you're ready.</p></div></li>
+          <li><span class="bubble filled">3</span><div><h3>Review every answer</h3><p>See your score, which questions you got wrong and why the right answer is right.</p></div></li>
+        </ol>
+      </div>
+    </section>
+
+    <section aria-labelledby="exams-title">
+      <div class="wrap">
+        <div class="section-head">
+          <div><h2 id="exams-title">Available exams</h2><p id="exam-summary"></p></div>
+          <a class="btn btn-line" href="exams.html">Filter exams</a>
+        </div>
+        <div class="exam-grid" id="exam-grid"></div>
+      </div>
+    </section>
+  </main>
+  <div id="site-footer"></div>
+</body>
+</html>

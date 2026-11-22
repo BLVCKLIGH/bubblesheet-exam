@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en-ZA">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>All exams | Bubblesheet</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible+Next:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <script src="js/data.js" defer></script>
+  <script src="js/common.js" defer></script>
+  <script src="js/exams.js" defer></script>
+</head>
+<body data-page="exams">
+  <div id="site-header"></div>
+  <main id="main" class="wrap" style="padding-bottom:5rem">
+    <div class="page-head"><h1>All exams</h1><p>Every exam is timed. Questions and answer order are shuffled on each attempt.</p></div>
+    <div class="filters" id="filters">
+      <div style="flex:2"><label for="q">Search</label><input id="q" type="search" placeholder="e.g. JavaScript, algebra" autocomplete="off"></div>
+      <div><label for="subject">Subject</label><select id="subject"><option value="">All subjects</option></select></div>
+      <div><label for="level">Level</label><select id="level"><option value="">Any level</option></select></div>
+      <div><label for="status">Status</label><select id="status"><option value="">All exams</option><option value="new">Not attempted yet</option><option value="done">Attempted</option></select></div>
+    </div>
+    <p class="muted" id="count" aria-live="polite"></p>
+    <div class="exam-grid" id="grid"></div>
+  </main>
+  <div id="site-footer"></div>
+</body>
+</html>

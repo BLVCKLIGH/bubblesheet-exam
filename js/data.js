@@ -1,0 +1,126 @@
+/* Exams and question banks.
+   Each attempt draws `count` questions at random from the bank and shuffles the options.
+   `a` is the index of the correct option. Wrap code in backticks to show it in a code style. */
+const EXAMS = [
+  {
+    id: "html-css", title: "HTML & CSS Basics", subject: "Web development", difficulty: "Easy", minutes: 10, count: 10, pass: 60,
+    description: "Elements, attributes, selectors, the box model and responsive layout.",
+    bank: [
+      { q: "Which HTML element is used for the most important heading on a page?", o: ["`<h1>`", "`<h6>`", "`<head>`", "`<heading>`"], a: 0, e: "`<h1>` is the top-level heading. `<head>` holds page metadata, not visible headings." },
+      { q: "Which attribute provides alternative text for an image?", o: ["`alt`", "`title`", "`src`", "`label`"], a: 0, e: "Screen readers read the `alt` text, and browsers show it if the image fails to load." },
+      { q: "Which CSS property changes the colour of text?", o: ["`color`", "`font-color`", "`text-color`", "`foreground`"], a: 0, e: "The property is simply `color`. The others don't exist in CSS." },
+      { q: "What does CSS stand for?", o: ["Cascading Style Sheets", "Computer Style Sheets", "Creative Styling System", "Coded Style Syntax"], a: 0, e: "Styles cascade: several rules can apply and the most specific or latest one wins." },
+      { q: "Which declaration turns an element into a flex container?", o: ["`display: flex;`", "`flex: 1;`", "`position: flex;`", "`layout: flex;`"], a: 0, e: "`display: flex` makes the element a flex container; `flex: 1` is set on the children." },
+      { q: "Which HTML element creates a hyperlink?", o: ["`<a>`", "`<link>`", "`<href>`", "`<nav>`"], a: 0, e: "`<a href=\"…\">` is the anchor element. `<link>` connects external resources such as stylesheets." },
+      { q: "In the CSS box model, what sits between the content and the border?", o: ["Padding", "Margin", "Outline", "Gap"], a: 0, e: "From inside out: content, padding, border, margin." },
+      { q: "Which selector targets the element with `id=\"main\"`?", o: ["`#main`", "`.main`", "`main`", "`*main`"], a: 0, e: "`#` selects by id, `.` by class, and a bare word selects by element name." },
+      { q: "Which CSS unit is relative to the root element's font size?", o: ["`rem`", "`em`", "`px`", "`vh`"], a: 0, e: "`rem` means root em. `em` is relative to the parent element's font size." },
+      { q: "Which media query applies styles only on screens 600px wide or narrower?", o: ["`@media (max-width: 600px)`", "`@media (min-width: 600px)`", "`@media (width > 600px)`", "`@screen 600px`"], a: 0, e: "`max-width: 600px` matches viewports up to and including 600px." },
+      { q: "Which property rounds the corners of a box?", o: ["`border-radius`", "`corner-round`", "`border-curve`", "`box-radius`"], a: 0, e: "`border-radius: 8px` rounds all four corners." },
+      { q: "Which element is the best choice for a self-contained blog post?", o: ["`<article>`", "`<div>`", "`<aside>`", "`<span>`"], a: 0, e: "`<article>` marks content that makes sense on its own, which helps search engines and screen readers." },
+    ],
+  },
+  {
+    id: "javascript", title: "JavaScript Fundamentals", subject: "Web development", difficulty: "Medium", minutes: 15, count: 10, pass: 60,
+    description: "Types, operators, arrays, the DOM and common gotchas.",
+    bank: [
+      { q: "What does `typeof null` return?", o: ["`\"object\"`", "`\"null\"`", "`\"undefined\"`", "`\"number\"`"], a: 0, e: "A long-standing quirk of the language: `typeof null` is `\"object\"`." },
+      { q: "Which keyword declares a block-scoped variable that cannot be reassigned?", o: ["`const`", "`let`", "`var`", "`static`"], a: 0, e: "`const` can't be reassigned (though objects it points to can still change). `let` can be reassigned." },
+      { q: "What is the result of `[1, 2, 3].map(x => x * 2)`?", o: ["`[2, 4, 6]`", "`[1, 2, 3, 2]`", "`12`", "`[1, 4, 9]`"], a: 0, e: "`map` returns a new array with the function applied to each element." },
+      { q: "What is the result of `\"5\" + 3`?", o: ["`\"53\"`", "`8`", "`\"8\"`", "`NaN`"], a: 0, e: "With a string involved, `+` concatenates, so 3 becomes \"3\"." },
+      { q: "What is the result of `\"5\" - 3`?", o: ["`2`", "`\"53\"`", "`\"2\"`", "`NaN`"], a: 0, e: "`-` only works on numbers, so \"5\" is converted to 5." },
+      { q: "Which array method adds an item to the end of an array?", o: ["`push()`", "`pop()`", "`shift()`", "`unshift()`"], a: 0, e: "`push` adds to the end, `pop` removes from the end, `unshift` adds to the start." },
+      { q: "How does `===` differ from `==`?", o: ["`===` compares value and type without converting", "`===` only compares types", "`===` is faster but otherwise identical", "`===` compares objects by their contents"], a: 0, e: "`==` converts types before comparing (`0 == \"0\"` is true); `===` does not." },
+      { q: "What does `JSON.parse()` do?", o: ["Turns a JSON string into a JavaScript value", "Turns an object into a JSON string", "Checks whether a string is valid HTML", "Downloads a JSON file"], a: 0, e: "`JSON.stringify` goes the other way, from value to string." },
+      { q: "Which event fires when a form is sent?", o: ["`submit`", "`send`", "`click`", "`post`"], a: 0, e: "Listen for `submit` on the form, and call `event.preventDefault()` to handle it in JavaScript." },
+      { q: "What does `0.1 + 0.2 === 0.3` evaluate to?", o: ["`false`", "`true`", "`undefined`", "It throws an error"], a: 0, e: "Floating-point rounding makes `0.1 + 0.2` equal 0.30000000000000004." },
+      { q: "Which of these is not a primitive type?", o: ["`object`", "`string`", "`boolean`", "`undefined`"], a: 0, e: "Primitives are string, number, bigint, boolean, undefined, symbol and null. Objects are reference types." },
+      { q: "What does `document.querySelector()` return when nothing matches?", o: ["`null`", "`undefined`", "An empty array", "It throws an error"], a: 0, e: "It returns `null`, so check the result before using it." },
+    ],
+  },
+  {
+    id: "python", title: "Python Basics", subject: "Programming", difficulty: "Easy", minutes: 10, count: 10, pass: 60,
+    description: "Data types, operators, strings, lists and functions.",
+    bank: [
+      { q: "What does `print(type(3.0))` show?", o: ["`<class 'float'>`", "`<class 'int'>`", "`<class 'double'>`", "`<class 'number'>`"], a: 0, e: "A number with a decimal point is a float in Python." },
+      { q: "What is `len(\"hello\")`?", o: ["`5`", "`4`", "`6`", "`\"hello\"`"], a: 0, e: "`len` counts the characters in a string." },
+      { q: "Which keyword defines a function?", o: ["`def`", "`function`", "`fun`", "`define`"], a: 0, e: "For example: `def greet(name):`" },
+      { q: "What is `7 // 2`?", o: ["`3`", "`3.5`", "`4`", "`1`"], a: 0, e: "`//` is floor division: it divides and rounds down." },
+      { q: "What is `2 ** 3`?", o: ["`8`", "`6`", "`9`", "`5`"], a: 0, e: "`**` is exponentiation: 2 × 2 × 2." },
+      { q: "Which of these types is immutable?", o: ["`tuple`", "`list`", "`dict`", "`set`"], a: 0, e: "Once a tuple is created its items can't be changed." },
+      { q: "What is `[1, 2, 3][-1]`?", o: ["`3`", "`1`", "`-1`", "An IndexError"], a: 0, e: "Negative indexes count from the end; `-1` is the last item." },
+      { q: "What does `\"abc\".upper()` return?", o: ["`\"ABC\"`", "`\"Abc\"`", "`\"abc\"`", "`None`"], a: 0, e: "`upper()` returns a new string in capitals." },
+      { q: "Which of these creates a dictionary?", o: ["`{\"a\": 1}`", "`[\"a\", 1]`", "`(\"a\", 1)`", "`{\"a\", 1}`"], a: 0, e: "Key–value pairs in braces make a dict. `{\"a\", 1}` is a set." },
+      { q: "Which numbers does `range(3)` produce?", o: ["0, 1, 2", "1, 2, 3", "0, 1, 2, 3", "3"], a: 0, e: "`range(n)` starts at 0 and stops before n." },
+      { q: "What is `bool(\"\")`?", o: ["`False`", "`True`", "`None`", "A TypeError"], a: 0, e: "Empty strings, 0, empty lists and `None` are all falsy." },
+      { q: "Which statement catches an error so the program can keep running?", o: ["`try` / `except`", "`if` / `else`", "`catch` / `finally`", "`with` / `as`"], a: 0, e: "Python uses `try`/`except`. `catch` is the keyword in JavaScript and Java." },
+    ],
+  },
+  {
+    id: "sa-general", title: "General Knowledge: South Africa", subject: "General knowledge", difficulty: "Easy", minutes: 8, count: 10, pass: 50,
+    description: "Geography, history, symbols and government of South Africa.",
+    bank: [
+      { q: "How many official languages does South Africa have?", o: ["12", "11", "9", "10"], a: 0, e: "South African Sign Language became the 12th official language in 2023." },
+      { q: "Which city is the seat of Parliament?", o: ["Cape Town", "Pretoria", "Bloemfontein", "Johannesburg"], a: 0, e: "Cape Town is the legislative capital, Pretoria the executive and Bloemfontein the judicial." },
+      { q: "What is the highest mountain in South Africa?", o: ["Mafadi", "Table Mountain", "Champagne Castle", "Thabana Ntlenyana"], a: 0, e: "Mafadi in the Drakensberg is 3,450 m. Thabana Ntlenyana is higher but in Lesotho." },
+      { q: "In which year was South Africa's first democratic election held?", o: ["1994", "1990", "1996", "1999"], a: 0, e: "The election was held on 27 April 1994, now celebrated as Freedom Day." },
+      { q: "What is South Africa's national animal?", o: ["Springbok", "Lion", "Blue crane", "Elephant"], a: 0, e: "The blue crane is the national bird." },
+      { q: "What is South Africa's national flower?", o: ["King protea", "Strelitzia", "Jacaranda", "Arum lily"], a: 0, e: "The king protea grows in the fynbos of the Western Cape." },
+      { q: "What is the longest river in South Africa?", o: ["Orange River", "Limpopo River", "Vaal River", "Tugela River"], a: 0, e: "The Orange (Gariep) River runs about 2,200 km to the Atlantic." },
+      { q: "Which ocean lies off South Africa's east coast?", o: ["Indian Ocean", "Atlantic Ocean", "Southern Ocean", "Pacific Ocean"], a: 0, e: "The warm Agulhas current flows down the east coast in the Indian Ocean." },
+      { q: "Which province has the largest land area?", o: ["Northern Cape", "Limpopo", "Eastern Cape", "Free State"], a: 0, e: "The Northern Cape covers nearly a third of the country but has the smallest population." },
+      { q: "Who became president after the 1994 election?", o: ["Nelson Mandela", "F.W. de Klerk", "Thabo Mbeki", "Oliver Tambo"], a: 0, e: "Nelson Mandela was inaugurated on 10 May 1994." },
+      { q: "Which city is known as eGoli, the City of Gold?", o: ["Johannesburg", "Kimberley", "Durban", "Pretoria"], a: 0, e: "Johannesburg grew out of the 1886 Witwatersrand gold rush." },
+      { q: "What is South Africa's currency?", o: ["Rand", "Pula", "Kwacha", "Shilling"], a: 0, e: "The rand is named after the Witwatersrand. Pula is Botswana's currency." },
+    ],
+  },
+  {
+    id: "algebra", title: "Mathematics: Algebra & Functions", subject: "Mathematics", difficulty: "Medium", minutes: 15, count: 10, pass: 50,
+    description: "Equations, exponents, sequences, logs and basic calculus at matric level.",
+    bank: [
+      { q: "Solve for x: 2x + 6 = 14", o: ["x = 4", "x = 10", "x = 3", "x = 7"], a: 0, e: "Subtract 6 to get 2x = 8, then divide by 2." },
+      { q: "What are the roots of x² − 5x + 6 = 0?", o: ["x = 2 or x = 3", "x = −2 or x = −3", "x = 1 or x = 6", "x = −1 or x = 6"], a: 0, e: "It factorises as (x − 2)(x − 3) = 0." },
+      { q: "Simplify x³ · x⁴", o: ["x⁷", "x¹²", "2x⁷", "x¹"], a: 0, e: "When multiplying powers with the same base, add the exponents." },
+      { q: "What is log₁₀ 1000?", o: ["3", "100", "10", "30"], a: 0, e: "10³ = 1000." },
+      { q: "What is the next term in 3, 7, 11, 15, …?", o: ["19", "18", "21", "23"], a: 0, e: "It's arithmetic with a common difference of 4." },
+      { q: "What is the sum of the first 10 terms of 2, 4, 6, …?", o: ["110", "100", "120", "220"], a: 0, e: "Sₙ = n/2 (2a + (n − 1)d) = 5 × (4 + 18) = 110." },
+      { q: "What is the gradient of y = 3x − 2?", o: ["3", "−2", "2", "−3"], a: 0, e: "In y = mx + c, m is the gradient." },
+      { q: "What is the derivative of f(x) = x²?", o: ["2x", "x", "2", "x³ ÷ 3"], a: 0, e: "Bring the power down and reduce it by one." },
+      { q: "If f(x) = x² + 1, what is f(3)?", o: ["10", "7", "9", "4"], a: 0, e: "3² + 1 = 10." },
+      { q: "Simplify √50", o: ["5√2", "25√2", "2√5", "10√5"], a: 0, e: "√50 = √(25 × 2) = 5√2." },
+      { q: "What is the common ratio of 5, 15, 45, …?", o: ["3", "10", "5", "15"], a: 0, e: "Each term is multiplied by 3." },
+      { q: "Solve for x: 3ˣ = 81", o: ["x = 4", "x = 3", "x = 27", "x = 9"], a: 0, e: "3⁴ = 81." },
+    ],
+  },
+  {
+    id: "networks", title: "Computer Networks", subject: "IT & networking", difficulty: "Hard", minutes: 12, count: 10, pass: 70,
+    description: "Ports, protocols, IP addressing, the OSI model and HTTP.",
+    bank: [
+      { q: "What is the default port for HTTPS?", o: ["443", "80", "8080", "22"], a: 0, e: "HTTP uses 80, SSH uses 22, and 8080 is a common alternative HTTP port." },
+      { q: "At which OSI layer does IP operate?", o: ["Network (layer 3)", "Transport (layer 4)", "Data link (layer 2)", "Application (layer 7)"], a: 0, e: "IP handles addressing and routing between networks, which is layer 3." },
+      { q: "What does DNS do?", o: ["Translates domain names into IP addresses", "Encrypts web traffic", "Assigns IP addresses to devices", "Blocks malicious websites"], a: 0, e: "Assigning addresses is DHCP's job; encryption is TLS." },
+      { q: "How many bits are in an IPv4 address?", o: ["32", "64", "128", "16"], a: 0, e: "IPv4 uses 32 bits; IPv6 uses 128." },
+      { q: "Which protocol is connectionless?", o: ["UDP", "TCP", "HTTP", "SSH"], a: 0, e: "UDP sends datagrams without a handshake, which suits video calls and games." },
+      { q: "Which of these is a private IPv4 address?", o: ["192.168.1.10", "8.8.8.8", "172.32.5.1", "11.0.0.1"], a: 0, e: "Private ranges are 10.0.0.0/8, 172.16.0.0/12 (172.16 to 172.31) and 192.168.0.0/16." },
+      { q: "Which HTTP status code means the page was not found?", o: ["404", "500", "301", "403"], a: 0, e: "500 is a server error, 301 a permanent redirect and 403 forbidden." },
+      { q: "Which device forwards packets between different networks?", o: ["Router", "Switch", "Hub", "Repeater"], a: 0, e: "Switches forward frames within one network; routers connect networks." },
+      { q: "How many usable host addresses are in a /24 subnet?", o: ["254", "256", "255", "253"], a: 0, e: "2⁸ = 256, minus the network and broadcast addresses." },
+      { q: "What is the order of the TCP three-way handshake?", o: ["SYN, SYN-ACK, ACK", "ACK, SYN, SYN-ACK", "SYN, ACK, FIN", "HELLO, ACK, DONE"], a: 0, e: "The client sends SYN, the server replies SYN-ACK, and the client confirms with ACK." },
+      { q: "Which protocol assigns IP addresses to devices automatically?", o: ["DHCP", "DNS", "ARP", "FTP"], a: 0, e: "ARP maps IP addresses to MAC addresses on a local network." },
+      { q: "What does TLS provide?", o: ["Encryption and authentication of data in transit", "Faster page loading", "Automatic IP addressing", "Compression of images"], a: 0, e: "TLS is the S in HTTPS." },
+    ],
+  },
+];
+
+const SUBJECTS = [...new Set(EXAMS.map(e => e.subject))];
+const DIFFICULTIES = ["Easy", "Medium", "Hard"];
+
+/* Sample scores so the leaderboard isn't empty on first visit. Clearly marked as samples in the UI. */
+const SAMPLE_SCORES = [
+  { name: "Ayanda N.", exam: "html-css", pct: 100, secs: 312 }, { name: "Liam P.", exam: "html-css", pct: 90, secs: 401 },
+  { name: "Zanele M.", exam: "javascript", pct: 90, secs: 640 }, { name: "Kabelo T.", exam: "javascript", pct: 80, secs: 702 },
+  { name: "Priya R.", exam: "python", pct: 100, secs: 288 }, { name: "Johan V.", exam: "python", pct: 70, secs: 455 },
+  { name: "Thando K.", exam: "sa-general", pct: 90, secs: 190 }, { name: "Megan S.", exam: "sa-general", pct: 80, secs: 240 },
+  { name: "Sibusiso D.", exam: "algebra", pct: 90, secs: 610 }, { name: "Fatima A.", exam: "algebra", pct: 80, secs: 720 },
+  { name: "Lerato B.", exam: "networks", pct: 80, secs: 530 }, { name: "Ruan B.", exam: "networks", pct: 70, secs: 600 },
+];
